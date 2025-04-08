@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import FooterBottom from './FooterBottom';
+import heroImg from '../assets/hero.png';
 
 const Footer = () => {
   return (
@@ -9,7 +10,7 @@ const Footer = () => {
           <p>Dreaming up something cool?</p>
           <div className="flex items-center justify-center md:justify-start gap-3 mt-2">
             <img
-              src="/src/assets/hero.png"
+              src={heroImg}
               alt="Profile"
               className="w-10 h-10 rounded-full object-cover bg-[#C7D0D9]"
             />

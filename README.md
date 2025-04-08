@@ -45,6 +45,8 @@ intro-site/
 
 ## Getting Started
 
+> **Node.js version:** Make sure you're using **Node.js v18 or higher** for full compatibility with Vite and its dependencies.
+
 1. Clone the repository
 
     ```

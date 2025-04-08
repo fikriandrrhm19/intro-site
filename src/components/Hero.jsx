@@ -39,7 +39,7 @@ const Hero = () => {
     initial={{ opacity: 0, y: 30 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 1, ease: "easeOut" }}
-    className="absolute bottom-0 z-10 h-[70vh] md:h-[80vh] lg:h-[90vh] object-contain"
+    className="z-10 h-[60vh] md:h-[80vh] lg:h-[90vh] object-contain self-end"
   />
 
   <StickyGreeting />

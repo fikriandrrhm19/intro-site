@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Linkedin, Twitter, Instagram, Github } from "lucide-react";
 import { SiMedium } from "react-icons/si";
@@ -72,7 +72,7 @@ const Navbar = () => {
               <ul className="hidden md:flex space-x-6 text-gray-700">
                 <li><a href="/#about" className="hover:text-blue-600 text-xl">About</a></li>
                 <li><a href="/#recent-work" className="hover:text-blue-600 text-xl">Work</a></li>
-                <li><a href="/contact" className="hover:text-blue-600 text-xl">Contact</a></li>
+                <li><Link to="/contact" className="hover:text-blue-600 text-xl">Contact</Link></li>
               </ul>
             </div>
           </motion.nav>
@@ -132,34 +132,46 @@ const Navbar = () => {
             >
               <div className="flex justify-end p-6"></div>
               <div className="flex flex-col items-start px-10 space-y-6 text-4xl font-semibold">
-                {["home", "about", "recent-work", "contact"].map((section) => (
+              {["home", "about", "recent-work", "contact"].map((section) => {
+                const isActive = activeSection === section;
+
+                if (section === "contact") {
+                  return (
+                    <Link
+                      key={section}
+                      to="/contact"
+                      onClick={() => {
+                        toggleMenu();
+                        setActiveSection(section);
+                      }}
+                      className="flex items-center space-x-4 group"
+                    >
+                      <div className={`w-2 h-2 rounded-full transition-all duration-300 ${isActive ? "bg-white" : "bg-gray-500 opacity-30"}`} />
+                      <span className="capitalize group-hover:opacity-80 transition">
+                        {section.replace("-", " ")}
+                      </span>
+                    </Link>
+                  );
+                }
+
+                return (
                   <a
                     key={section}
+                    href={section === "home" ? "/" : `/#${section}`}
                     onClick={() => {
                       toggleMenu();
                       setActiveSection(section);
                     }}
-                    href={
-                      section === "contact"
-                        ? "/contact"
-                        : section === "home"
-                        ? "/"
-                        : `/#${section}`
-                    }
                     className="flex items-center space-x-4 group"
                   >
-                    <div
-                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                        activeSection === section ? "bg-white" : "bg-gray-500 opacity-30"
-                      }`}
-                    />
+                    <div className={`w-2 h-2 rounded-full transition-all duration-300 ${isActive ? "bg-white" : "bg-gray-500 opacity-30"}`} />
                     <span className="capitalize group-hover:opacity-80 transition">
                       {section.replace("-", " ")}
                     </span>
                   </a>
-                ))}
+                );
+              })}
               </div>
-
               <div className="px-10 pb-10 text-sm text-white">
                 <div className="border-t border-white/20 pt-6 flex justify-start gap-6 flex-wrap">
                   <a href="https://linkedin.com/in/fikriandrrhm" target="_blank" className="flex items-center gap-2 hover:text-white transition">
